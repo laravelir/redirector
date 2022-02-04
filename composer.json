@@ -1,8 +1,9 @@
 {
-    "name": "miladimos/package-skeleton",
+    "name": "laravelir/redirector",
     "description": "test description",
-    "homepage": "https://github.com/miladimos/package-skeleton",
+    "homepage": "https://github.com/laravelir/redirector",
     "type": "library",
+    "version": "0.1.0",
     "keywords": [
         "laravel",
         "laravel-package",
@@ -21,21 +22,21 @@
     ],
     "autoload": {
         "psr-4": {
-            "Miladimos\\Package\\": "src/"
+            "Laravelir\\Redirector\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Miladimos\\Package\\Tests\\": "tests"
+            "Laravelir\\Redirector\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Miladimos\\Package\\Providers\\PackageServiceProvider"
+                "Laravelir\\Redirector\\Providers\\RedirectorServiceProvider"
             ],
             "aliases": {
-                "Package": "Miladimos\\Package\\Facades\\PackageFacade"
+                "Redirector": "Laravelir\\Redirector\\Facades\\RedirectorFacade"
             }
         }
     },

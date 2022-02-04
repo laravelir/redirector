@@ -1,17 +1,17 @@
 <?php
 
-namespace Miladimos\Package\Models;
+namespace Laravelir\Redirector;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PackageModel extends Model
+class Redirector extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'tables';
+    protected $table = 'redirects';
 
     // protected $fillable = ['name'];
 

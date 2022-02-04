@@ -1,6 +1,6 @@
 <?php
 
-namespace Miladimos\Package\Providers;
+namespace Laravelir\Redirect\Providers;
 
 use App\Http\Kernel;
 use Illuminate\Routing\Router;
@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Miladimos\Package\Facades\PackageFacade;
-use Miladimos\Package\Console\Commands\InstallPackageCommand;
+use Laravelir\Redirect\Facades\RedirectFacade;
+use Laravelir\Redirect\Console\Commands\InstallRedirectCommand;
 
-class PackageServiceProvider extends ServiceProvider
+class RedirectServiceProvider extends ServiceProvider
 {
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . "/../../config/config.php", 'package');
+        $this->mergeConfigFrom(__DIR__ . "/../../config/redirector.php", 'package');
 
         // $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
@@ -45,7 +45,7 @@ class PackageServiceProvider extends ServiceProvider
     private function registerFacades()
     {
         $this->app->bind('package', function ($app) {
-            return new PackageFacade();
+            return new RedirectFacade();
         });
     }
 
@@ -64,7 +64,7 @@ class PackageServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->commands([
-                InstallPackageCommand::class,
+                InstallRedirectCommand::class,
             ]);
         }
     }
@@ -127,11 +127,11 @@ class PackageServiceProvider extends ServiceProvider
     // protected function registerBladeDirectives()
     // {
     //     Blade::directive('format', function ($expression) {
-    //         return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
+    //         return "<?php echo ($expression)->format('m/d/Y H:i'); ?/> ";
     //     });
 
     //     Blade::directive('config', function ($key) {
-    //         return "<?php echo config('dashboarder.' . $key); ?>";
+    //         return "<?php echo config('dashboarder.' . $key); ?/>";
     //     });
     // }
 

@@ -1,23 +1,23 @@
 <?php
 
-namespace Miladimos\Package\Console\Commands;
+namespace Laravelir\Redirector\Console\Commands;
 
 use Illuminate\Console\Command;
 
 class InstallPackageCommand extends Command
 {
-    protected $signature = 'package:install';
+    protected $signature = 'redirector:install';
 
-    protected $description = 'Install the package Package';
+    protected $description = 'Install the redirector Package';
 
     public function handle()
     {
         $this->line("\t... Welcome To Package Installer ...");
 
 
-        // if (!empty(File::glob(database_path('migrations\*_create_packages_tables.php')))) {
+        // if (!empty(File::glob(database_path('migrations\*_create_redirectors_tables.php')))) {
 
-        //     $list  = File::glob(database_path('migrations\*_create_packages_tables.php'));
+        //     $list  = File::glob(database_path('migrations\*_create_redirectors_tables.php'));
         //     collect($list)->each(function ($item) {
         //         File::delete($item);
         //     });
@@ -32,8 +32,8 @@ class InstallPackageCommand extends Command
     }
 
     //       //config
-    //       if (File::exists(config_path('package.php'))) {
-    //         $confirm = $this->confirm("package.php already exist. Do you want to overwrite?");
+    //       if (File::exists(config_path('redirector.php'))) {
+    //         $confirm = $this->confirm("redirector.php already exist. Do you want to overwrite?");
     //         if ($confirm) {
     //             $this->publishConfig();
     //             $this->info("config overwrite finished");
@@ -46,8 +46,8 @@ class InstallPackageCommand extends Command
     //     }
 
     //     //assets
-    //     if (File::exists(public_path('package'))) {
-    //         $confirm = $this->confirm("package directory already exist. Do you want to overwrite?");
+    //     if (File::exists(public_path('redirector'))) {
+    //         $confirm = $this->confirm("redirector directory already exist. Do you want to overwrite?");
     //         if ($confirm) {
     //             $this->publishAssets();
     //             $this->info("assets overwrite finished");
@@ -79,7 +79,7 @@ class InstallPackageCommand extends Command
     // private function publishConfig()
     // {
     //     $this->call('vendor:publish', [
-    //         '--provider' => "Miladimos\package\Providers\packageServiceProvider",
+    //         '--provider' => "Laravelir\Redirector\Providers\redirectorServiceProvider",
     //         '--tag'      => 'config',
     //         '--force'    => true
     //     ]);
@@ -88,7 +88,7 @@ class InstallPackageCommand extends Command
     // private function publishMigration()
     // {
     //     $this->call('vendor:publish', [
-    //         '--provider' => "Miladimos\package\Providers\packageServiceProvider",
+    //         '--provider' => "Laravelir\Redirector\Providers\redirectorServiceProvider",
     //         '--tag'      => 'migrations',
     //         '--force'    => true
     //     ]);
@@ -97,7 +97,7 @@ class InstallPackageCommand extends Command
     // private function publishAssets()
     // {
     //     $this->call('vendor:publish', [
-    //         '--provider' => "Miladimos\package\Providers\packageServiceProvider",
+    //         '--provider' => "Laravelir\Redirector\Providers\redirectorServiceProvider",
     //         '--tag'      => 'assets',
     //         '--force'    => true
     //     ]);
