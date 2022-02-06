@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravelir\Redirector;
+namespace Laravelir\Redirector\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -6,12 +6,16 @@ use Illuminate\Support\Facades\Route;
 
 class Redirector
 {
-    private $route;
+    private $router;
 
-    public function __construct(Route $route)
+    public function __construct(Route $router)
     {
-        $this->route = $route;
+        $this->route = $router;
     }
 
+    public function checkExistUrl($route)
+    {
+        # code...
+    }
 
 }
