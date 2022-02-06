@@ -28,6 +28,7 @@ class RedirectorServiceProvider extends ServiceProvider
     {
         $this->registerCommands();
         $this->publishMigrations();
+        $this->publishConfig();
         $this->registerMiddleware();
     }
 
@@ -59,8 +60,8 @@ class RedirectorServiceProvider extends ServiceProvider
     {
         $timestamp = date('Y_m_d_His', time());
         $this->publishes([
-            __DIR__ . '/../database/migrations/create_redirector_tables.stub' => database_path() . "/migrations/{$timestamp}_create_redirector_tables.php",
-        ], 'redirector-migrations');
+            __DIR__ . '/../../database/migrations/create_redirectors_table.stub' => database_path() . "/migrations/{$timestamp}_create_redirector_table.php",
+        ], 'redirector-migration');
     }
 
     protected function registerMiddleware()

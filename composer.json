@@ -1,6 +1,6 @@
 {
     "name": "laravelir/redirector",
-    "description": "test description",
+    "description": "a redirector package",
     "homepage": "https://github.com/laravelir/redirector",
     "type": "library",
     "version": "0.1.0",
@@ -16,7 +16,7 @@
         {
             "name": "miladimos",
             "email": "miladimos@outlook.com",
-            "role": "maintaner",
+            "role": "maintainer",
             "homepage": "https://github.com/miladimos"
         }
     ],

@@ -15,10 +15,17 @@ return [
     // valid codes: 300, 301, 302, 303, 304, 307, 308
     'default_response_code' => 301,
 
+    /**
+     * $schema://app_url/ + {url}
+     * exp:
+     * old_url :
+     *
+     */
     'redirects' => [
         [
-            'old_url' => '',
-            'new_url' => '',
+            # $schema://app_url/test to $schema://app_url/testtest
+            'old_url' => 'test',
+            'new_url' => 'testtest',
         ],
     ],
 ];

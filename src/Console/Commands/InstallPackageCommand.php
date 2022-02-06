@@ -3,6 +3,7 @@
 namespace Laravelir\Redirector\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class InstallPackageCommand extends Command
 {
@@ -14,92 +15,56 @@ class InstallPackageCommand extends Command
     {
         $this->line("\t... Welcome To Package Installer ...");
 
+        //config
+        if (File::exists(config_path('redirector.php'))) {
+            $confirm = $this->confirm("redirector.php already exist. Do you want to overwrite?");
+            if ($confirm) {
+                $this->publishConfig();
+                $this->info("config overwrite finished");
+            } else {
+                $this->info("skipped config publish");
+            }
+        } else {
+            $this->publishConfig();
+            $this->info("config published");
+        }
 
-        // if (!empty(File::glob(database_path('migrations\*_create_redirectors_tables.php')))) {
+        if (!empty(File::glob(database_path('migrations\*_create_redirector_table.php')))) {
+            $list  = File::glob(database_path('migrations\*_create_redirector_table.php'));
+            collect($list)->each(function ($item) {
+                File::delete($item);
+                $this->warn("Deleted: " . $item);
+            });
+        } else {
+            $this->publishMigration();
+        }
 
-        //     $list  = File::glob(database_path('migrations\*_create_redirectors_tables.php'));
-        //     collect($list)->each(function ($item) {
-        //         File::delete($item);
-        //     });
+        $this->publishMigration();
 
-        //     $this->publishMigration();
-        // } else {
-        //     $this->publishMigration();
-        // }
+        // dd("s");
+
+
 
         $this->info("Package Successfully Installed.\n");
         $this->info("\t\tGood Luck.");
     }
 
-    //       //config
-    //       if (File::exists(config_path('redirector.php'))) {
-    //         $confirm = $this->confirm("redirector.php already exist. Do you want to overwrite?");
-    //         if ($confirm) {
-    //             $this->publishConfig();
-    //             $this->info("config overwrite finished");
-    //         } else {
-    //             $this->info("skipped config publish");
-    //         }
-    //     } else {
-    //         $this->publishConfig();
-    //         $this->info("config published");
-    //     }
 
-    //     //assets
-    //     if (File::exists(public_path('redirector'))) {
-    //         $confirm = $this->confirm("redirector directory already exist. Do you want to overwrite?");
-    //         if ($confirm) {
-    //             $this->publishAssets();
-    //             $this->info("assets overwrite finished");
-    //         } else {
-    //             $this->info("skipped assets publish");
-    //         }
-    //     } else {
-    //         $this->publishAssets();
-    //         $this->info("assets published");
-    //     }
+    private function publishConfig()
+    {
+        $this->call('vendor:publish', [
+            '--provider' => "Laravelir\Redirector\Providers\RedirectorServiceProvider",
+            '--tag'      => 'redirector-config',
+            '--force'    => true
+        ]);
+    }
 
-    //     //migration
-    //     if (File::exists(database_path("migrations/$migrationFile"))) {
-    //         $confirm = $this->confirm("migration file already exist. Do you want to overwrite?");
-    //         if ($confirm) {
-    //             $this->publishMigration();
-    //             $this->info("migration overwrite finished");
-    //         } else {
-    //             $this->info("skipped migration publish");
-    //         }
-    //     } else {
-    //         $this->publishMigration();
-    //         $this->info("migration published");
-    //     }
-
-    //     $this->call('migrate');
-    // }
-
-    // private function publishConfig()
-    // {
-    //     $this->call('vendor:publish', [
-    //         '--provider' => "Laravelir\Redirector\Providers\redirectorServiceProvider",
-    //         '--tag'      => 'config',
-    //         '--force'    => true
-    //     ]);
-    // }
-
-    // private function publishMigration()
-    // {
-    //     $this->call('vendor:publish', [
-    //         '--provider' => "Laravelir\Redirector\Providers\redirectorServiceProvider",
-    //         '--tag'      => 'migrations',
-    //         '--force'    => true
-    //     ]);
-    // }
-
-    // private function publishAssets()
-    // {
-    //     $this->call('vendor:publish', [
-    //         '--provider' => "Laravelir\Redirector\Providers\redirectorServiceProvider",
-    //         '--tag'      => 'assets',
-    //         '--force'    => true
-    //     ]);
-    // }
+    private function publishMigration()
+    {
+        $this->call('vendor:publish', [
+            '--provider' => "Laravelir\Redirector\Providers\RedirectorServiceProvider",
+            '--tag'      => 'redirector-migration',
+            '--force'    => true
+        ]);
+    }
 }

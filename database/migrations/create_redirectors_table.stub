@@ -17,7 +17,7 @@ class CreateRedirectorTable extends Migration
             $table->id();
             $table->string('old_url');
             $table->string('new_url');
-            %table->char('type')->nullable();
+            $table->char('type')->nullable();
             $table->timestamps();
         });
     }

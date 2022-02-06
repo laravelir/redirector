@@ -8,6 +8,6 @@ class RedirectorFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'redirector'; // TODO: Change the accessor name
+        return 'redirector';
     }
 }
