@@ -13,7 +13,7 @@ class CreateRedirectorTable extends Migration
      */
     public function up()
     {
-        Schema::create('redirector', function (Blueprint $table) {
+        Schema::create('redirectors', function (Blueprint $table) {
             $table->id();
             $table->string('old_url');
             $table->string('new_url');
@@ -29,6 +29,6 @@ class CreateRedirectorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('redirector');
+        Schema::dropIfExists('redirectors');
     }
 }

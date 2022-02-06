@@ -11,7 +11,7 @@ class Redirector extends Model
      *
      * @var string
      */
-    protected $table = 'redirects';
+    protected $table = 'redirectors';
 
     // protected $fillable = ['name'];
 

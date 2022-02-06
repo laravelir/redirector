@@ -4,11 +4,22 @@ namespace Laravelir\Redirect\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Closure;
+use Laravelir\Redirector\Services\Redirector;
 
 class RedirectorMiddleware
 {
-    public function handle(Request $request, Closure $closure)
+    private $redirectorService;
+
+    public function __construct(Redirector $redirector)
     {
-        # code...
+        $this->redirectorService = $redirector;
+    }
+
+    public function handle(Request $request, Closure $next)
+    {
+        $response = $next($request);
+
+        if ($this->redirectorService->shouldRedirect($request)) {};
+
     }
 }
