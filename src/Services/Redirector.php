@@ -3,12 +3,10 @@
 namespace Laravelir\Redirector\Services;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Laravelir\Redirector\Models\Redirector as ModelsRedirector;
-use Laravelir\Redirector\Repository\FileRepository;
-use Laravelir\Redirector\Repository\MongodbRepository;
+use Laravelir\Redirector\Repository\XMLRepository;
 use Laravelir\Redirector\Repository\MysqlRepository;
 use Laravelir\Redirector\Repository\RedisRepository;
+use Laravelir\Redirector\Repository\MongodbRepository;
 
 class Redirector
 {
@@ -17,7 +15,7 @@ class Redirector
     private $repositories = [
         'mysql' => MysqlRepository::class,
         'redis' => RedisRepository::class,
-        'file'  => FileRepository::class,
+        'xml'  => XMLRepository::class,
         'mongodb' => MongodbRepository::class,
     ];
 
@@ -44,7 +42,7 @@ class Redirector
         if (!$request->isMethod('get') || $request->expectsJson()) {
             return false;
         }
-        $redirect = $this->findRedirect($request->path());
+        $redirect = $this->find($request->path());
         if (!$redirect) {
             return false;
         }
@@ -53,7 +51,7 @@ class Redirector
 
     public function redirect(Request $request)
     {
-        $redirect = $this->findRedirect($request->path());
+        $redirect = $this->find($request->path());
         return redirect($redirect->destination_url, $redirect->response_code);
     }
 
@@ -75,16 +73,37 @@ class Redirector
         return $this->model->latest()->get();
     }
 
-    public function findRedirect($url)
+    public function all()
     {
-        return $this->model->where('source_url', $url)->first();
+        return $this->repository->all();
     }
 
-    public function store($source_url, $destination_url, $response_code = 301, $type = null)
+    public function find(string $source_url)
     {
-        if ($this->model->where('source_url', $source_url)->first()) {
-            return false;
-        }
-        return $this->model->create(['source_url' => $source_url, 'destination_url' => $destination_url, 'response_code' => $response_code]);
+        return $this->repository->find($source_url);
+    }
+
+    public function store(string $source_url, string $destination_url, string $response_code = '301')
+    {
+        return $this->repository->store($source_url, $destination_url, $response_code);
+    }
+
+    public function update()
+    {
+    }
+
+    public function exist(string $source_url)
+    {
+        return $this->repository->exist($source_url);
+    }
+
+    public function delete(string $source_url)
+    {
+        return $this->repository->delete($source_url);
+    }
+
+    public function truncate()
+    {
+        return $this->repository->truncate();
     }
 }

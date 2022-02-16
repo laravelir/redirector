@@ -21,7 +21,7 @@ class RedirectorMiddleware
 
         $response = $next($request);
 
-        dd($this->redirectorService->getRepository());
+        dd($this->redirectorService->all());
         if (!$this->redirectorService->shouldRedirect($request)) {
             return $response;
         };

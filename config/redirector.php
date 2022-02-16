@@ -8,9 +8,9 @@ return [
 
     /**
      * available repositories:
-     * mysql - mongodb - redis - file
+     * mysql - mongodb - redis - xml
      */
-    'repository' => 'mysql',
+    'repository' => 'redis',
 
     // disabled package functionality
     'disabled' => false,
