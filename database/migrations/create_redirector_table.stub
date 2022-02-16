@@ -15,8 +15,8 @@ class CreateRedirectorTable extends Migration
     {
         Schema::create('redirector', function (Blueprint $table) {
             $table->id();
-            $table->string('old_url');
-            $table->string('new_url');
+            $table->string('source_url');
+            $table->string('destination_url');
             $table->string('response_code', 3)->default('301');
             $table->boolean('active')->default(true);
             $table->timestamps();

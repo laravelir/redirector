@@ -8,12 +8,10 @@ use Laravelir\Redirector\Models\Redirector as ModelsRedirector;
 
 class Redirector
 {
-    private $router;
     private $model;
 
-    public function __construct(Route $router, ModelsRedirector $redirector)
+    public function __construct(ModelsRedirector $redirector)
     {
-        $this->route = $router;
         $this->model = $redirector;
     }
 
@@ -32,7 +30,7 @@ class Redirector
     public function redirect(Request $request)
     {
         $redirect = $this->findRedirect($request->path());
-        return redirect($redirect->new_url, $redirect->response_code);
+        return redirect($redirect->destination_url, $redirect->response_code);
     }
 
     public function responseCode($code = null)
@@ -53,16 +51,16 @@ class Redirector
         return $this->model->latest()->get();
     }
 
-    public function findRedirect($route)
+    public function findRedirect($url)
     {
-        return $this->model->where('old_url', $route)->first();
+        return $this->model->where('source_url', $url)->first();
     }
 
-    public function store($old_route, $new_route, $response_code = 301, $type = null)
+    public function store($source_url, $destination_url, $response_code = 301, $type = null)
     {
-        if ($this->model->where('old_url', $old_route)->first()) {
+        if ($this->model->where('source_url', $source_url)->first()) {
             return false;
         }
-        return $this->model->create(['old_url' => $old_route, 'new_url' => $new_route, 'response_code' => $response_code]);
+        return $this->model->create(['source_url' => $source_url, 'destination_url' => $destination_url, 'response_code' => $response_code]);
     }
 }

@@ -1,11 +1,11 @@
-- [![Starts](https://img.shields.io/github/stars/miladimos/redirector?style=flat&logo=github)](https://github.com/miladimos/redirector/forks)
-- [![Forks](https://img.shields.io/github/forks/miladimos/redirector?style=flat&logo=github)](https://github.com/miladimos/redirector/stargazers)
-  [![Total Downloads](https://img.shields.io/packagist/dt/miladimos/laravel-.svg?style=flat-square)](https://packagist.org/packages/miladimos/laravel-)
+- [![Starts](https://img.shields.io/github/stars/laravelir/redirector?style=flat&logo=github)](https://github.com/laravelir/redirector/forks)
+- [![Forks](https://img.shields.io/github/forks/laravelir/redirector?style=flat&logo=github)](https://github.com/laravelir/redirector/stargazers)
+  [![Total Downloads](https://img.shields.io/packagist/dt/laravelir/laravel-.svg?style=flat-square)](https://packagist.org/packages/laravelir/laravel-)
 
 
 # laravel Package
 
-A redirector pacakge
+A redirector package
 
 ### Installation
 
@@ -27,16 +27,28 @@ Laravelir\Redirector\Providers\RedirectorServiceProvider::class,
 php artisan redirector:install
 ```
 
-1. add below middleware to middleware:
+4. add below middleware to middleware:
 
 ```
 \Laravelir\Redirector\Http\Middleware\RedirectorMiddleware::class,
 ```
 
+### Redirector Service
 
-features:
-www to non-www
+```php
+use Laravelir\Redirector\Services;
+
+$redirector = resolve(Redirector::class);
+
+$redirector->store($source_url, $destination_url, $response_code);
+$redirector->shouldRedirect(Request $request);
+$redirector->redirect(Request $request);
+```
+
+#### Goals of this package:
+enable/disable www to non-www
 add slashed to end of all routes
+implements features of wordpress plugins like redirect-301, SEO Redirection Premium, safe-redirect-manager, Yoast seo Pro,  Rank Math  
 
 ## Testing
 
