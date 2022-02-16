@@ -10,10 +10,10 @@ return [
      * available repositories:
      * mysql - mongodb - redis - xml
      */
-    'repository' => 'redis',
+    'repository' => 'mysql',
 
     // disabled package functionality
-    'disabled' => false,
+    'disabled' => true,
 
     // valid codes: 300, 301, 302, 303, 304, 307, 308
     'default_response_code' => 301,

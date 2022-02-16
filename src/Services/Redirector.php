@@ -3,10 +3,12 @@
 namespace Laravelir\Redirector\Services;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Laravelir\Redirector\Repository\XMLRepository;
 use Laravelir\Redirector\Repository\MysqlRepository;
 use Laravelir\Redirector\Repository\RedisRepository;
 use Laravelir\Redirector\Repository\MongodbRepository;
+use Laravelir\Redirector\Models\Redirector as ModelsRedirector;
 
 class Redirector
 {
@@ -42,7 +44,7 @@ class Redirector
         if (!$request->isMethod('get') || $request->expectsJson()) {
             return false;
         }
-        $redirect = $this->find($request->path());
+        $redirect = $this->findActive($request->path());
         if (!$redirect) {
             return false;
         }
@@ -95,6 +97,16 @@ class Redirector
     public function exist(string $source_url)
     {
         return $this->repository->exist($source_url);
+    }
+
+    public function active(string $source_url)
+    {
+        return $this->repository->active($source_url);
+    }
+
+    public function findActive(string $source_url)
+    {
+        return $this->repository->findActive($source_url);
     }
 
     public function delete(string $source_url)

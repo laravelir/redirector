@@ -26,17 +26,31 @@ class MysqlRepository  implements RepositoryContract
 
     public function update()
     {
+        //
     }
 
-    public function exist()
+    public function exist(string $source_url)
     {
+        return Redirector::where('source_url', $source_url)->exist();
     }
 
-    public function delete()
+    public function delete(string $source_url)
     {
+        return Redirector::where('source_url', $source_url)->delete();
+    }
+
+    public function active(string $source_url): bool
+    {
+        return Redirector::where(['source_url' => $source_url, 'active' => true])->exist();
+    }
+
+    public function findActive(string $source_url)
+    {
+        return Redirector::where(['source_url' => $source_url, 'active' => true])->first();
     }
 
     public function truncate()
     {
+        return Redirector::get()->delete();
     }
 }
