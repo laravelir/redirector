@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravelir\Redirect\Http\Middleware;
+namespace Laravelir\Redirector\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Closure;
@@ -19,7 +19,11 @@ class RedirectorMiddleware
     {
         $response = $next($request);
 
-        if ($this->redirectorService->shouldRedirect($request)) {};
+        if (!$this->redirectorService->shouldRedirect($request)) {
+            return $response;
+        };
+
+        return $this->redirectorService->redirect($request);
 
     }
 }

@@ -41,10 +41,6 @@ class InstallPackageCommand extends Command
 
         $this->publishMigration();
 
-        // dd("s");
-
-
-
         $this->info("Package Successfully Installed.\n");
         $this->info("\t\tGood Luck.");
     }

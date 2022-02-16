@@ -27,6 +27,16 @@ Laravelir\Redirector\Providers\RedirectorServiceProvider::class,
 php artisan redirector:install
 ```
 
+1. add below middleware to middleware:
+
+```
+\Laravelir\Redirector\Http\Middleware\RedirectorMiddleware::class,
+```
+
+
+features:
+www to non-www
+add slashed to end of all routes
 
 ## Testing
 
