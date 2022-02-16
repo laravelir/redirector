@@ -48,7 +48,9 @@ $redirector->redirect(Request $request);
 #### Goals of this package:
 enable/disable www to non-www
 add slashed to end of all routes
-implements features of wordpress plugins like redirect-301, SEO Redirection Premium, safe-redirect-manager, Yoast seo Pro,  Rank Math  
+implements features of wordpress plugins like redirect-301, SEO Redirection Premium, safe-redirect-manager, Yoast seo Pro,  Rank Math 
+
+add redis - file - Mysql - Mongodb engine Repository
 
 ## Testing
 

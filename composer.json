@@ -3,7 +3,7 @@
     "description": "a redirector package",
     "homepage": "https://github.com/laravelir/redirector",
     "type": "library",
-    "version": "0.2.1",
+    "version": "0.2.5",
     "keywords": [
         "laravel",
         "laravel-package",

@@ -5,14 +5,38 @@ namespace Laravelir\Redirector\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravelir\Redirector\Models\Redirector as ModelsRedirector;
+use Laravelir\Redirector\Repository\FileRepository;
+use Laravelir\Redirector\Repository\MongodbRepository;
+use Laravelir\Redirector\Repository\MysqlRepository;
+use Laravelir\Redirector\Repository\RedisRepository;
 
 class Redirector
 {
-    private $model;
+    private $repository;
 
-    public function __construct(ModelsRedirector $redirector)
+    private $repositories = [
+        'mysql' => MysqlRepository::class,
+        'redis' => RedisRepository::class,
+        'file'  => FileRepository::class,
+        'mongodb' => MongodbRepository::class,
+    ];
+
+    public function __construct()
     {
-        $this->model = $redirector;
+        $this->repository = $this->setRepository();
+    }
+
+    public function setRepository()
+    {
+        $repository = config('redirector.repository') ?? 'mysql';
+
+        return array_key_exists($repository, $this->repositories) ?
+            resolve($this->repositories[$repository]) : resolve($this->repositories['mysql']);
+    }
+
+    public function getRepository()
+    {
+        return $this->repository;
     }
 
     public function shouldRedirect(Request $request)

@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravelir\Redirect\Http\Middleware\RedirectorMiddleware;
 use Laravelir\Redirector\Facades\RedirectorFacade;
 use Laravelir\Redirector\Console\Commands\InstallPackageCommand;
+use Laravelir\Redirector\Services\Redirector;
 
 class RedirectorServiceProvider extends ServiceProvider
 {
@@ -35,7 +36,7 @@ class RedirectorServiceProvider extends ServiceProvider
     private function registerFacades()
     {
         $this->app->bind('redirector', function ($app) {
-            return new RedirectorFacade();
+            return new Redirector();
         });
     }
 

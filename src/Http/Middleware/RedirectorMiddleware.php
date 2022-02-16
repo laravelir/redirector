@@ -17,8 +17,11 @@ class RedirectorMiddleware
 
     public function handle(Request $request, Closure $next)
     {
+        if (config('redirector.disable')) return $next($request);
+
         $response = $next($request);
 
+        dd($this->redirectorService->getRepository());
         if (!$this->redirectorService->shouldRedirect($request)) {
             return $response;
         };
