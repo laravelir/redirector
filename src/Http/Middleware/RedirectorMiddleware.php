@@ -17,16 +17,26 @@ class RedirectorMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        if (!config('redirector.disable')) return $next($request);
-
         $response = $next($request);
 
-        // dd($this->redirectorService->all());
+        if ($this->shouldRedirect($request)) {
+            return $this->redirectorService->redirect($request);
+        }
+
+        return $response;
+    }
+
+    private function shouldRedirect($request)
+    {
+
+        $disabled = config('redirector.disabled') ?? 'no';
+        if ($disabled == 'yes') {
+            return false;
+        }
+
         if (!$this->redirectorService->shouldRedirect($request)) {
-            return $response;
-        };
-
-        return $this->redirectorService->redirect($request);
-
+            return false;
+        }
+        return true;
     }
 }
