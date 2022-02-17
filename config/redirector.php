@@ -19,5 +19,5 @@ return [
     'disabled' => 'no',
 
     // valid codes: 300, 301, 302, 303, 304, 307, 308
-    'default_response_code' => 301,
+    'default_response_code' => env('DEFAULT_RESPONSE_CODE', 301),
 ];

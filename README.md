@@ -45,10 +45,17 @@ $redirector->shouldRedirect(Request $request);
 $redirector->redirect(Request $request);
 ```
 
-#### Goals of this package:
+#### Goals of this package (Todo)
 enable/disable www to non-www
+
 add slashed to end of all routes
+
+force redirect http to https
+
+add route hit counter
+
 implements features of wordpress plugins like redirect-301, SEO Redirection Premium, safe-redirect-manager, Yoast seo Pro,  Rank Math 
+
 
 add redis - file - Mysql - Mongodb engine Repository
 
