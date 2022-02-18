@@ -4,8 +4,6 @@
 
 
 return [
-    'redirector' => Laravelir\Redirector\Services\Redirector::class,
-
     /**
      * available repositories:
      * mysql - mongodb - redis - xml
@@ -19,5 +17,5 @@ return [
     'disabled' => 'no',
 
     // valid codes: 300, 301, 302, 303, 304, 307, 308
-    'default_response_code' => env('DEFAULT_RESPONSE_CODE', 301),
+    'default_response_code' => env('REDIRECTOR_DEFAULT_RESPONSE_CODE', 301),
 ];

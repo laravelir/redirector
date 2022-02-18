@@ -15,10 +15,14 @@ A redirector package
 composer require laravelir/redirector
 ```
 
-2. Open your config/app.php and add the following to the providers array:
+2. Open your config/app.php and add the following to the providers/aliases array:
 
 ```php
-Laravelir\Redirector\Providers\RedirectorServiceProvider::class,
+Laravelir\Redirector\Providers\RedirectorServiceProvider::class, # provider
+```
+
+```php
+'Redirector' => Laravelir\Redirector\Facades\RedirectorFacade::class # aliases
 ```
 
 3. Run the command below to install package:

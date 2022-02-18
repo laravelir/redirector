@@ -13,7 +13,19 @@ class Redirector extends Model
      */
     protected $table = 'redirector';
 
-    // protected $fillable = ['name'];
+    protected $fillable = ['source_url', 'destination_url', 'status_code', 'hit_count', 'active'];
 
-    protected $guarded = [];
+    // protected $guarded = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function (self $model) {
+            // dd($model->source_url);
+            $model->attributes['source_url'] = validateUrl($model->source_url);
+            $model->attributes['destination_url'] = validateUrl($model->destination_url);
+        });
+    }
+
 }

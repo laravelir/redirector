@@ -2,7 +2,6 @@
 
 namespace Laravelir\Redirector\Providers;
 
-use App\Http\Kernel;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Laravelir\Redirect\Http\Middleware\RedirectorMiddleware;
