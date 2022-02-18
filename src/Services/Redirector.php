@@ -36,7 +36,7 @@ class Redirector
 
     public function getRepository()
     {
-        return $this->repository;
+        return [config('redirector.repository') => $this->repository];
     }
 
     public function shouldRedirect(Request $request)
