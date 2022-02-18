@@ -35,11 +35,10 @@ class InstallPackageCommand extends Command
                 File::delete($item);
                 $this->warn("Deleted: " . $item);
             });
+            $this->publishMigration();
         } else {
             $this->publishMigration();
         }
-
-        $this->publishMigration();
 
         $this->info("Package Successfully Installed.\n");
         $this->info("\t\tGood Luck.");

@@ -1,6 +1,6 @@
-- [![Starts](https://img.shields.io/github/stars/laravelir/redirector?style=flat&logo=github)](https://github.com/laravelir/redirector/forks)
-- [![Forks](https://img.shields.io/github/forks/laravelir/redirector?style=flat&logo=github)](https://github.com/laravelir/redirector/stargazers)
-  [![Total Downloads](https://img.shields.io/packagist/dt/laravelir/laravel-.svg?style=flat-square)](https://packagist.org/packages/laravelir/laravel-)
+[![Starts](https://img.shields.io/github/stars/laravelir/redirector?style=flat&logo=github)](https://github.com/laravelir/redirector/forks)  [![Forks](https://img.shields.io/github/forks/laravelir/redirector?style=flat&logo=github)](https://github.com/laravelir/redirector/stargazers) [![Total Downloads](https://img.shields.io/packagist/dt/laravelir/redirector.svg?style=flat-square)](https://packagist.org/packages/laravelir/redirector)
+
+  
 
 
 # laravel Package
