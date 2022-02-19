@@ -4,6 +4,9 @@
 
 
 return [
+
+    'redirector' => Laravelir\Redirector\Services\Redirector::class,
+
     /**
      * available repositories:
      * mysql - mongodb - redis - xml

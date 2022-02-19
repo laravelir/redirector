@@ -1,6 +1,9 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Response;
+
 final class HttpStatusCode
 {
-    static $S301 = '1';
+    const S301 = Response::HTTP_MOVED_PERMANENTLY;
+    const S302 = Response::HTTP_FOUND;
 }

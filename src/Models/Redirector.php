@@ -17,12 +17,15 @@ class Redirector extends Model
 
     // protected $guarded = [];
 
+    protected $casts = [
+        'meta' => 'json',
+    ];
+
     protected static function boot()
     {
         parent::boot();
 
         static::saving(function (self $model) {
-            // dd($model->source_url);
             $model->attributes['source_url'] = validateUrl($model->source_url);
             $model->attributes['destination_url'] = validateUrl($model->destination_url);
         });
