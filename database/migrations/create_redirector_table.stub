@@ -19,7 +19,7 @@ class CreateRedirectorTable extends Migration
             $table->string('destination_url');
             $table->string('status_code', 3)->default('301');
             $table->unsignedBigInteger('hit_count')->default(0);
-            $table->json('meta')->nullable();
+            $table->json('meta')->nullable(); // for wildcard constraints
             $table->enum('type', ['i', 'e'])->default('i'); // i => internal, e => external
             $table->enum('active', ['t', 'f'])->default('t'); // t => true, f => false
             $table->timestamps();

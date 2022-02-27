@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Facade;
  * @see \Laravelir\Redirector\Repository\RepositoryContract
  */
 
-class RedirectorFacade extends Facade
+class Redirector extends Facade
 {
     protected static function getFacadeAccessor()
     {

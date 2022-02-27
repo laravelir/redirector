@@ -5,7 +5,6 @@ namespace Laravelir\Redirector\Providers;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Laravelir\Redirect\Http\Middleware\RedirectorMiddleware;
-use Laravelir\Redirector\Facades\RedirectorFacade;
 use Laravelir\Redirector\Console\Commands\InstallPackageCommand;
 use Laravelir\Redirector\Services\Redirector;
 

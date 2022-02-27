@@ -7,6 +7,8 @@
 
 A redirector package
 
+Seo Toolkit for laravel projects
+
 ### Installation
 
 1. Run the command below to add this package:
@@ -47,12 +49,23 @@ $redirector = resolve(Redirector::class);
 $redirector->store($source_url, $destination_url, $response_code);
 $redirector->shouldRedirect(Request $request);
 $redirector->redirect(Request $request);
+
 ```
 
+### Features
+
+For enable enforce https add these to env:
+```php
+REDIRECTOR_ENFORCE_HTTPS=true
+```
+
+
+
 #### Goals of this package (Todo)
+
 enable/disable www to non-www
 
-add slashed to end of all routes
+add slashed to end of all routes or remove it
 
 force redirect http to https
 
@@ -62,6 +75,16 @@ implements features of wordpress plugins like redirect-301, SEO Redirection Prem
 
 
 add redis - file - Mysql - Mongodb engine Repository
+
+add redirect ro lower
+
+abort index.php page to 404
+
+add exclude urls for redirects 
+
+add wildcard params (Regular Expression Constraints)
+
+
 
 ## Testing
 
