@@ -33,11 +33,24 @@ Laravelir\Redirector\Providers\RedirectorServiceProvider::class, # provider
 php artisan redirector:install
 ```
 
-4. add below middleware to middleware:
+### Features
 
+for redirector service add this middleware
 ```
-\Laravelir\Redirector\Http\Middleware\RedirectorMiddleware::class,
+'redirector => \Laravelir\Redirector\Http\Middleware\RedirectorMiddleware::class,
 ```
+
+
+for enforce https this middleware
+```php
+'enforce_https' => \Laravelir\Redirector\Http\Middleware\RedirectorEnforceHttps::class,
+```
+add this to env:
+```php
+REDIRECTOR_ENFORCE_HTTPS=true
+```
+
+
 
 ### Redirector Service
 
@@ -51,14 +64,6 @@ $redirector->shouldRedirect(Request $request);
 $redirector->redirect(Request $request);
 
 ```
-
-### Features
-
-For enable enforce https add these to env:
-```php
-REDIRECTOR_ENFORCE_HTTPS=true
-```
-
 
 
 #### Goals of this package (Todo)

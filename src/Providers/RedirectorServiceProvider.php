@@ -6,6 +6,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Laravelir\Redirect\Http\Middleware\RedirectorMiddleware;
 use Laravelir\Redirector\Console\Commands\InstallPackageCommand;
+use Laravelir\Redirector\Http\Middleware\RedirectorEnforceHttps;
 use Laravelir\Redirector\Services\Redirector;
 
 class RedirectorServiceProvider extends ServiceProvider
@@ -68,6 +69,7 @@ class RedirectorServiceProvider extends ServiceProvider
         $router = resolve(Router::class);
 
         $router->aliasMiddleware('redirector', RedirectorMiddleware::class);
+        $router->aliasMiddleware('enforce_https', RedirectorEnforceHttps::class);
     }
 
 }
