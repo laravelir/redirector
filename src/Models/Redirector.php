@@ -31,7 +31,7 @@ class Redirector extends Model
                 throw EqualUrlsException::equalUrls();
             }
 
-            static::whereSourceUrl($model->destination_url)->whereDestination($model->source_url)->delete();
+            static::whereSourceUrl($model->destination_url)->whereDestinationUrl($model->source_url)->delete();
 
             $model->attributes['source_url'] = validateUrl($model->source_url);
             $model->attributes['destination_url'] = validateUrl($model->destination_url);
