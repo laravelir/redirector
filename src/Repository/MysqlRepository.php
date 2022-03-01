@@ -24,9 +24,12 @@ class MysqlRepository  implements RepositoryContract
         return Redirector::create(['source_url' => $source_url, 'destination_url' => $destination_url, 'response_code' => $response_code]);
     }
 
-    public function update()
+    public function update(string $source_url, array $data)
     {
-        //
+        if ($redirect = Redirector::where('source_url', $source_url)->first()) {
+            return false;
+        }
+        return $redirect->update($data);
     }
 
     public function exist(string $source_url)

@@ -24,7 +24,7 @@ Laravelir\Redirector\Providers\RedirectorServiceProvider::class, # provider
 ```
 
 ```php
-'Redirector' => Laravelir\Redirector\Facades\RedirectorFacade::class # aliases
+'Redirector' => Laravelir\Redirector\Facades\Redirector::class # aliases
 ```
 
 3. Run the command below to install package:
@@ -39,7 +39,6 @@ for redirector service add this middleware
 ```
 'redirector => \Laravelir\Redirector\Http\Middleware\RedirectorMiddleware::class,
 ```
-
 
 for enforce https this middleware
 ```php

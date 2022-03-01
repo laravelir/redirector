@@ -54,6 +54,7 @@ class Redirector
     public function redirect(Request $request)
     {
         $redirect = $this->find($request->path());
+        $redirect->increment('hit_count');
         return redirect($redirect->destination_url, $redirect->response_code);
     }
 
@@ -72,8 +73,9 @@ class Redirector
         return $this->repository->store($source_url, $destination_url, $response_code);
     }
 
-    public function update()
+    public function update(string $source_url, array $data)
     {
+        return $this->repository->update($source_url, $data);
     }
 
     public function exist(string $source_url)
