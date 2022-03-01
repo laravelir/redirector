@@ -14,7 +14,7 @@ class Redirector extends Model
      */
     protected $table = 'redirector';
 
-    protected $fillable = ['source_url', 'destination_url', 'status_code', 'hit_count', 'active'];
+    protected $fillable = ['source_url', 'destination_url', 'response_code', 'hit_count', 'active'];
 
     // protected $guarded = [];
 
