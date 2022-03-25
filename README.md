@@ -67,16 +67,19 @@ $redirector->redirect(Request $request);
 
 #### Goals of this package (Todo)
 
+1 -  
+2 - redirect 404 pages to exist page
+
+
 enable/disable www to non-www
 
 add slashed to end of all routes or remove it
 
-force redirect http to https
+force redirect http to https in htaccess and nginx
 
 add route hit counter
 
 implements features of wordpress plugins like redirect-301, SEO Redirection Premium, safe-redirect-manager, Yoast seo Pro,  Rank Math 
-
 
 add redis - file - Mysql - Mongodb engine Repository
 
@@ -88,7 +91,7 @@ add exclude urls for redirects
 
 add wildcard params (Regular Expression Constraints)
 
-
+add url shortener
 
 ## Testing
 
