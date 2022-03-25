@@ -4,7 +4,7 @@ namespace Laravelir\Redirector\Exceptions;
 
 use Exception;
 
-final class EqualUrlsException extends Exception
+class EqualUrlsException extends Exception
 {
     /**
      * throws when source_url exact equal to destination_url.

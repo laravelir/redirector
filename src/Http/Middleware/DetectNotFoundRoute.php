@@ -5,11 +5,21 @@ namespace Laravelir\Redirector\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravelir\Redirector\Services\Redirector;
 
 class DetectNotFoundRoute
 {
+
+    private $redirectorService;
+
+    public function __construct(Redirector $redirector)
+    {
+        $this->redirectorService = $redirector;
+    }
+
     public function handle(Request $request, Closure $next)
     {
+        $response = $next($request);
 
         $routeCollection = collect(Route::getRoutes());
         $existingRoutes = $routeCollection->map(function ($item) {
@@ -17,21 +27,32 @@ class DetectNotFoundRoute
         })->toArray();
 
         $reqUri = trim($request->getPathInfo(), '/');
-        // dd($reqUri, $existingRoutes[41]);
 
-        // dd($request->getPathInfo());
         if (in_array($reqUri, $existingRoutes) || $request->getPathInfo() == '/') {
-            dd(true);
+            return $response;
         } else {
-            dd(false);
+
+            if ($this->shouldRedirect($request)) {
+                return $this->redirectorService->redirect($request);
+            }
+
+            return $response;
         }
-        // $routeCollection->each(function ($item) use ($request) {
-        //     if ($item->uri() == $request->getPathInfo()) {
-        //     } else {
-        //     }
-        // });
 
+        return $response;
+    }
 
-        return $next($request);
+    private function shouldRedirect($request)
+    {
+
+        $disabled = config('redirector.disabled') ?? 'no';
+        if ($disabled == 'yes') {
+            return false;
+        }
+
+        if (!$this->redirectorService->shouldRedirect($request)) {
+            return false;
+        }
+        return true;
     }
 }
