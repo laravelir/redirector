@@ -21,10 +21,12 @@ class DetectNotFoundRoute
     {
         $response = $next($request);
 
+        // dd($_SERVER);
         $routeCollection = collect(Route::getRoutes());
         $existingRoutes = $routeCollection->map(function ($item) {
             return [$item->uri][0];
         })->toArray();
+
 
         $reqUri = trim($request->getPathInfo(), '/');
 
@@ -39,6 +41,9 @@ class DetectNotFoundRoute
             return $response;
         }
 
+    [
+        'https://rasadm.com/آموزش-سئو/‏' => ''
+    ]
         return $response;
     }
 
